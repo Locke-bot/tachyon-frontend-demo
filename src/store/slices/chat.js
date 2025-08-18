@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import isEqual from 'lodash/isEqual';
 
-import authAxios, { localAxiosServices } from "../../utils/axios";
+import authAxios from "../../utils/axios";
 
 const initialState = {
   currentChat: {},
@@ -17,7 +17,7 @@ export const fetchThreadsPreview = createAsyncThunk(
   "chat/fetchThreadsPreview",
   async (arg, thunkAPI) => {
     try {
-      let response = await localAxiosServices.get(`api/v1/threads/preview/`);
+      let response = await authAxios.get(`api/v1/threads/preview/`);
       return { data: response.data };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -29,7 +29,7 @@ export const deleteThread = createAsyncThunk(
   "chat/deleteThread",
   async (arg, thunkAPI) => {
     try {
-      let response = await localAxiosServices.delete(`api/v1/threads/delete/${arg.uuid}/`);
+      let response = await authAxios.delete(`api/v1/threads/delete/${arg.uuid}/`);
       return { uuid: arg.uuid };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -41,7 +41,7 @@ export const fetchThreadRuns = createAsyncThunk(
   "chat/fetchThreadRuns",
   async (arg, thunkAPI) => {
     try {
-      let response = await localAxiosServices.get(`api/v1/runs/${arg.uuid}/`);
+      let response = await authAxios.get(`api/v1/runs/${arg.uuid}/`);
       return { data: response.data, uuid: arg.uuid };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
