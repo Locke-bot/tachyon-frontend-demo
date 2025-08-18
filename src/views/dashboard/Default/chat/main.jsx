@@ -267,7 +267,6 @@ export default function Main({ sendMessage, lastMessage }) {
                   <>
                     <ReasoningStepsComponent
                       runId={runId}
-                      processing={processingLatestRun}
                       order={visibleNodes}
                     />
                   </>

@@ -272,7 +272,7 @@ function NodeDetail({ node, detail, facetDetail }) {
 }
 
 /* ---------- main component ---------- */
-export default function ReasoningStepsComponent({ runId, order, processing, defaultExpanded=true}) {
+export default function ReasoningStepsComponent({ runId, order, defaultExpanded=true}) {
   const { currentChat, timeline } = useSelector((state) => state.chat);
   const nodeMap = timeline?.[runId] || {};              // { node: [phase, detail] }
   const facetDetail = Array.isArray(nodeMap?.web_facet?.[1]) ? nodeMap.web_facet[1] : [];
