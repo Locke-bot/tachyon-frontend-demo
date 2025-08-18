@@ -65,7 +65,7 @@ export default function Main({ sendMessage, lastMessage }) {
     "web_facet",
     "web_search",
     "integrate",
-    "answer"
+    // "answer"
     // "condense",
   ];
   const [visibleNodes, setVisibleNodes] = useState(ORDER);
