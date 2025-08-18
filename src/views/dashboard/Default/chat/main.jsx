@@ -50,7 +50,6 @@ export default function Main({ sendMessage, lastMessage }) {
   const [recording, setRecording] = useState(false);
   const [Mic, setMic] = useState(null);
   const [webChecked, setWebChecked] = useState(true);
-  const [processingLatestRun, setProcessingLatestRun] = useState(false);
   const inputRef = useRef(null);
   const localAnswerRef = useRef(null);
 
@@ -66,6 +65,7 @@ export default function Main({ sendMessage, lastMessage }) {
     "web_facet",
     "web_search",
     "integrate",
+    "answer"
     // "condense",
   ];
   const [visibleNodes, setVisibleNodes] = useState(ORDER);
@@ -107,7 +107,6 @@ export default function Main({ sendMessage, lastMessage }) {
   }, [webChecked]);
 
   useEffect(() => {
-    console.log("chanhe0opnxl");
     if (lastMessage !== null) {
       if (
         [
@@ -145,14 +144,13 @@ export default function Main({ sendMessage, lastMessage }) {
       }
 
       let data = JSON.parse(lastMessage?.data);
-      console.log(data);
+      // console.log(data);
       if (!data?.run_id || !currentChat.hasOwnProperty(data.run_id)) return;
 
       let thread_id = data.thread_id;
       let run_id = data.run_id;
 
       if (data?.type === "error") {
-        console.log("an error occured");
         dispatch(
           openSnackbar({
             open: true,
@@ -177,10 +175,8 @@ export default function Main({ sendMessage, lastMessage }) {
         dispatch(setCurrentChat(updatedChat));
       } else if (data?.type === "done") {
         if (Object.keys(currentChat).length === 1) {
-          console.log("mennede");
           dispatch(fetchThreadsPreview({ uuid: currentThreadId }));
           dispatch(setCurrentThreadId(thread_id));
-          setProcessingLatestRun(false);
         }
       } else if (data?.type === "progress") {
         let node = data.node;
@@ -196,9 +192,6 @@ export default function Main({ sendMessage, lastMessage }) {
           };
           
           dispatch(setTimeline(updatedTimeline));
-          if (phase==="end" && detail && ["answer"].includes(node)) {
-            setProcessingLatestRun(false);
-          }
         }
       } else if (["answer", "assistant"].includes(data?.node) && data?.delta) {
         let token = data.delta;
@@ -209,7 +202,6 @@ export default function Main({ sendMessage, lastMessage }) {
           const prev = updated[run_id];
           updated[run_id] = [prev[0], localAnswerRef.current];
           
-          setProcessingLatestRun(false);
           dispatch(setCurrentChat(updated));
         }
       } else if (
@@ -240,7 +232,6 @@ export default function Main({ sendMessage, lastMessage }) {
 
       const runId = uuidv4();
       dispatch(setCurrentChat({ ...currentChat, [runId]: [q.trim(), null] }));
-      setProcessingLatestRun(true);
       shouldAutoScrollRef.current = true;
       setTimeout(() => {
         const el = psContainerRef.current;

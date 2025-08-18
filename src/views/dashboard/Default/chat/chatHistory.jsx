@@ -39,7 +39,6 @@ function QuestionButtonsInner() {
 
   useEffect(() => {
     if (!menuPos || !Object.keys(menuPos).length) {
-        console.log("unsetting")
         setAnchorUuid("");
     }
   }, [menuPos]);
@@ -47,7 +46,7 @@ function QuestionButtonsInner() {
   const itemKey = React.useCallback((index) => keys[index], [keys]);
 
   if (keys.length === 0) return null;
-  console.log(sidebarToggle, "sidebarToggle")
+  
   return (
     <>
     <Box className="menu-section">

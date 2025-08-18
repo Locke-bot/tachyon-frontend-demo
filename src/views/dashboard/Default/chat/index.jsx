@@ -34,6 +34,8 @@ export default function Main() {
   const [hoverCustomTool, setHoverCustomTool] = useState(false);
   const accountMenuRef = useRef(null);
 
+  const { logout } = useAuth();
+
   const handleSidebarClick = () => {
     dispatch(setSidebarToggle(!sidebarToggle));
   };
@@ -54,7 +56,6 @@ export default function Main() {
   }, []);
 
   useEffect(() => {
-    console.log('dispatching runs', currentThreadId)
     if (currentThreadId) {
       dispatch(fetchThreadRuns({uuid: currentThreadId}))
     } else {
@@ -94,6 +95,7 @@ export default function Main() {
   useEffect(() => {
     const access = localStorage.getItem("accessToken");
     const refresh = localStorage.getItem("refreshToken");
+
     if (access && refresh) {
       const user = jwt_decode(access);
       const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1;
@@ -123,6 +125,14 @@ export default function Main() {
     wsOptions,
     connectNow
   );
+
+  const handleLogout = async () => {
+      try {
+          await logout();
+      } catch (err) {
+          console.error(err);
+      }
+  };
 
   return (
     <Box className="app-container">
@@ -261,7 +271,7 @@ export default function Main() {
                   href="#"
                   data-tooltip="Sign out of your account"
                   data-tooltip-pos="left"
-                  onClick={handleAccountClick}
+                  onClick={() => {handleLogout()}}
                 >
                   <svg
                     viewBox="0 0 24 24"

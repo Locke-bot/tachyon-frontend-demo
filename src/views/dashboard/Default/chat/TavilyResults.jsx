@@ -149,7 +149,7 @@ export default function TavilyResults({ runId, defaultExpanded = true, title = "
     );
 
   if (!any) return null;
-  console.log(expanded, "expanded")
+  
   return (
     <Accordion expanded={expanded} disableGutters elevation={0} onChange={(_, is) => setExpanded(is)} sx={{ bgcolor: "transparent", mt: 1, maxWidth: "95%" }}>
       <AccordionSummary

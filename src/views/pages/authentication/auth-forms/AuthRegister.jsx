@@ -144,7 +144,6 @@ const JWTRegister = ({ data, ...others }) => {
           touched,
           values,
         }) =>
-          console.log(errors) || (
             <form noValidate autoComplete="off" onSubmit={handleSubmit} {...others}>
               <Grid container spacing={matchDownSM ? 0 : 2}>
                 <Grid item xs={12} sm={6}>
@@ -375,7 +374,6 @@ const JWTRegister = ({ data, ...others }) => {
                 </AnimateButton>
               </Box>
             </form>
-          )
         }
       </Formik>
     </>

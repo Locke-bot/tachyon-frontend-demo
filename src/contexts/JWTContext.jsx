@@ -160,7 +160,6 @@ export const JWTProvider = ({ children }) => {
     const logout = () => {
         setSession(null, null);
         dispatch2(logout2())
-        dispatch2(logout3())
         dispatch({ type: LOGOUT });
     };
 

@@ -4,8 +4,8 @@
 
 import axios from 'axios';
 
-const API = (window.location.href.includes('localhost') || window.location.href.includes('127.0.0.1')) ? 'http://127.0.0.1:8000/' : 'https://tachyon-883917794458.us-central1.run.app/'
-// const API = 'https://tachyon-883917794458.us-central1.run.app/'
+// const API = (window.location.href.includes('localhost') || window.location.href.includes('127.0.0.1')) ? 'http://127.0.0.1:8000/' : 'https://tachyon-883917794458.us-central1.run.app/'
+const API = 'https://tachyon-883917794458.us-central1.run.app/'
 
 export const localAxiosServices = axios.create({ baseURL: import.meta.env.VITE_APP_API_URL || 'http://127.0.0.1:8000/' });
 const axiosServices = axios.create({ baseURL: import.meta.env.VITE_APP_API_URL || API });

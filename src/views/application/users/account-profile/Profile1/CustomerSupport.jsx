@@ -111,7 +111,6 @@ const CustomerSupport = () => {
             );
             resetForm();
         }).catch((err) => {
-          console.log(err)
           setStatus({ success: false });
           setErrors({ submit: err.message });
         }).finally(() => {

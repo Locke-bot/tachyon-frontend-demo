@@ -18,7 +18,6 @@ const Confirmation = () => {
             navigate('/activate/success', { replace: true });
             setSuccess(null)
         }).catch((err) => {
-            console.log(err)
             navigate('/activate/error', { replace: true });
             setSuccess(false)
         })        

@@ -273,7 +273,7 @@ function NodeDetail({ node, detail, facetDetail }) {
 
 /* ---------- main component ---------- */
 export default function ReasoningStepsComponent({ runId, order, processing, defaultExpanded=true}) {
-  const { timeline } = useSelector((state) => state.chat);
+  const { currentChat, timeline } = useSelector((state) => state.chat);
   const nodeMap = timeline?.[runId] || {};              // { node: [phase, detail] }
   const facetDetail = Array.isArray(nodeMap?.web_facet?.[1]) ? nodeMap.web_facet[1] : [];
   const webSearchDetail = nodeMap?.web_search?.[1];
@@ -288,8 +288,8 @@ export default function ReasoningStepsComponent({ runId, order, processing, defa
   if (hasWebResults) nodes = nodes.filter((n) => n !== "web_facet");
 
   const [expanded, setExpanded] = React.useState(defaultExpanded);
-  if (nodes.length === 0 && !processing) return null;
-    console.log(Object.keys(timeline).toReversed().find(k => timeline[k][0] === "start"), "heuris", timeline)
+  if (!(currentChat && Object.keys(currentChat).length)) return null;
+  
   return (
     <Accordion
       expanded={expanded}
@@ -316,8 +316,8 @@ export default function ReasoningStepsComponent({ runId, order, processing, defa
           "& .MuiAccordionSummary-content": { my: 1 },
         }}
       >
-        <Typography variant="subtitle2" sx={{ fontWeight: 600 }} className={`${!processing ? "" : "loading-shimmer"}`}>
-          {!processing ? "Done" : "Processing" }
+        <Typography variant="subtitle2" sx={{ fontWeight: 600 }} className={`${currentChat[runId] && currentChat[runId][0] && currentChat[runId][1] ? "" : "loading-shimmer"}`}>
+          {currentChat[runId] && currentChat[runId][0] && currentChat[runId][1] ? "Done" : "Processing" }
         </Typography>
       </AccordionSummary>
 

@@ -722,7 +722,7 @@ header {
   align-items: center;
   gap: 12px;
   padding: 10px 16px;
-  color: var(--text-secondary);
+  color: var(--brand);
   text-decoration: none;
   cursor: pointer;
   transition: all 0.2s;
@@ -732,7 +732,7 @@ header {
 
 .account-dropdown-item:hover {
   background: var(--brand-weak);
-  color: var(--brand);
+  color: var(--brand-hover);
   padding-left: 20px;
 }
 

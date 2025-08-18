@@ -90,7 +90,6 @@ export const chatSlice = createSlice({
       .addCase(fetchThreadRuns.fulfilled, (state, action) => {
         let timelines = action.payload.data["timelines"]
         let runs = action.payload.data["runs"]
-        console.log(action.payload.uuid === state.currentThreadId, state.currentThreadId);
         // if (action.payload.uuid === state.currentThreadId) {
         //   state.currentChat = {...state.currentChat, ...runs};
         // } else {
