@@ -6,7 +6,7 @@ import Loader from './Loader';
 // ==============================|| LOADABLE - LAZY LOADING ||============================== //
 
 const Loadable = (Component) => (props) => (
-    <Suspense fallback={<Loader />}>
+    <Suspense>
         <Component {...props} />
     </Suspense>
 );
