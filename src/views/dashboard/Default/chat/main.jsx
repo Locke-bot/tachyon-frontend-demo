@@ -410,6 +410,7 @@ export default function Main({ sendMessage, lastMessage }) {
             aria-label="Send message"
             data-tooltip="Send message (Enter)"
             data-tooltip-pos="left"
+            onClick={(e) => {e.stopPropagation(); send();}}
           >
             <svg viewBox="0 0 24 24" fill="currentColor">
               <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>

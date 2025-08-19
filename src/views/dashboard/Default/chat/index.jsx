@@ -71,26 +71,26 @@ export default function Main() {
     }
   }, [threadGraphType])
 
-  // useEffect(() => {
-  //   const onDocClick = (e) => {
-  //     if (
-  //       accountMenuRef.current &&
-  //       !accountMenuRef.current.contains(e.target)
-  //     ) {
-  //       setAccountToggle(false);
-  //     }
-  //   };
-  //   const onEsc = (e) => {
-  //     if (e.key === "Escape") setAccountToggle(false);
-  //   };
+  useEffect(() => {
+    const onDocClick = (e) => {
+      if (
+        accountMenuRef.current &&
+        !accountMenuRef.current.contains(e.target)
+      ) {
+        setAccountToggle(false);
+      }
+    };
+    const onEsc = (e) => {
+      if (e.key === "Escape") setAccountToggle(false);
+    };
 
-  //   document.addEventListener("click", onDocClick);
-  //   document.addEventListener("keydown", onEsc);
-  //   return () => {
-  //     document.removeEventListener("click", onDocClick);
-  //     document.removeEventListener("keydown", onEsc);
-  //   };
-  // }, []);
+    document.addEventListener("click", onDocClick);
+    document.addEventListener("keydown", onEsc);
+    return () => {
+      document.removeEventListener("click", onDocClick);
+      document.removeEventListener("keydown", onEsc);
+    };
+  }, []);
   
   useEffect(() => {
     const access = localStorage.getItem("accessToken");
