@@ -16,7 +16,8 @@
   --panel: #ffffff;
   --line: #e2e8f0;
   --text: #0f172a;
-  --text-secondary: #475569;
+  /* --text-secondary: #475569; */
+  --text-secondary: #5d5d5d;
   --text-muted: #94a3b8;
   /* --brand: #0066ff; */
   /* --brand-hover: #0052cc; */
@@ -35,8 +36,9 @@
   --sidebar-collapsed: 68px;
   --header-height: 64px;
 
-  --shimmer-contrast: #0009;
-  --text-secondary: #f3f3f3;  
+  /* --shimmer-contrast: #0009; */
+  --shimmer-contrast: #ffffffbf;
+  /* --text-secondary: #f3f3f3; */
 }
 
 a {
