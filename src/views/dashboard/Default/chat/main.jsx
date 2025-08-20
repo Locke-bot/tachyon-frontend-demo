@@ -318,6 +318,7 @@ export default function Main({ sendMessage, lastMessage }) {
 
             <Box
               className="control-group"
+              style={{ visibility: mode.toLowerCase()==="deep" ? "hidden" : undefined}}
               data-tooltip="Enable web search for real-time information"
               data-tooltip-pos="bottom"
             >
